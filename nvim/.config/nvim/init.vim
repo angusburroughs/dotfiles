@@ -28,6 +28,11 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'neovim/nvim-lspconfig'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'ray-x/lsp_signature.nvim'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+
+Plug 'sbdchd/neoformat'
 
 " Telescope
 Plug 'nvim-lua/popup.nvim'
