@@ -1,0 +1,5 @@
+# yabai to manage screen layout
+yabai -m config layout bsp
+
+# mouse follows yabai's focus
+yabai -m config mouse_follows_focus on
