@@ -1,5 +1,4 @@
-# yabai to manage screen layout
-yabai -m config layout bsp
+# need to get the line splitting working, dunno why it doesn't like the backslashes, maybe spaces vs tabs issue?
+yabai -m config layout bsp mouse_follows_focus on
 
-# mouse follows yabai's focus
-yabai -m config mouse_follows_focus on
+echo "yabai configuration loaded!"
