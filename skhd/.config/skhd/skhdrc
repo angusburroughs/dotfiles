@@ -1,0 +1,31 @@
+# focus
+shift + cmd - up  : yabai -m window --focus north  
+shift + cmd - down  : yabai -m window --focus south  
+shift + cmd - left  : yabai -m window --focus west  
+shift + cmd - right  : yabai -m window --focus east  
+
+# moving
+# shift + alt - right   : yabai -m window --warp east
+
+# monitor focus
+hyper - o : yabai -m display --focus prev
+hyper - p : yabai -m display --focus next
+
+# monitor move and focus
+# send window to desktop and follow focus
+hyper - right : yabai -m window --display next; yabai -m display --focus next
+hyper - left : yabai -m window --display  prev; yabai -m display --focus prev
+
+
+# right size
+shift + cmd - d : yabai -m window --resize right:-20:0
+shift + alt - d : yabai -m window --resize right:+20:0
+# left size
+shift + alt - a : yabai -m window --resize left:0:+20
+shift + cmd - a : yabai -m window --resize left:+20:0
+
+# make floating window fill screen
+shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
+
+# float window
+hyper - up  : yabai -m window current --toggle zoom-fullscreen
