@@ -31,6 +31,9 @@ Plug 'ray-x/lsp_signature.nvim'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*'}
+
+
 
 Plug 'sbdchd/neoformat'
 

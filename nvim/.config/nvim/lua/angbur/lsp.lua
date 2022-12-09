@@ -7,11 +7,11 @@ local source_mapping = {
 }
 
 cmp.setup({
-	-- snippet = {
-	-- 	expand = function(args)
-	-- 		require("luasnip").lsp_expand(args.body)
-	-- 	end,
-	-- },
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end,
+	},
 
     -- these mappings don't work, but the buffer based suggestions do
 	mapping = {
@@ -31,7 +31,7 @@ cmp.setup({
     },
 	sources = {
 		{ name = "nvim_lsp" },
-		-- { name = "luasnip" },
+		{ name = "luasnip" },
 		{ name = "buffer" },
 	},
 })
