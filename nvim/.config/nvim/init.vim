@@ -12,6 +12,9 @@ set foldnestmax=10
 set nofoldenable
 set foldlevel=2
 
+set termguicolors
+set background=dark
+
 call plug#begin()
 
 " Git
