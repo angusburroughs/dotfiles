@@ -2,6 +2,8 @@ require("angbur.telescope")
 require("angbur.nvimtree")
 require("angbur.lsp")
 require("angbur.colorscheme")
+require("angbur.treesitter")
+require("angbur.set")
 
 P = function(v)
   print(vim.inspect(v))
