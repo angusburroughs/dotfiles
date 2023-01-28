@@ -39,6 +39,8 @@ Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*'}
 " tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
+Plug 'mbbill/undotree'
+
 Plug 'sbdchd/neoformat'
 
 " Telescope
