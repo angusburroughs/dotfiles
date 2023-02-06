@@ -21,4 +21,3 @@ require'nvim-treesitter.configs'.setup {
 
 -- KEYMAPS
 -- TODO move to own file
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)

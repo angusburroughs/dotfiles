@@ -4,6 +4,8 @@ require("angbur.lsp")
 require("angbur.colorscheme")
 require("angbur.treesitter")
 require("angbur.set")
+require("angbur.undotree")
+require("angbur.vimtest")
 
 P = function(v)
   print(vim.inspect(v))
@@ -18,3 +20,4 @@ if pcall(require, 'plenary') then
     return require(name)
   end
 end
+
