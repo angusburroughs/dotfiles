@@ -7,6 +7,10 @@ require("angbur.set")
 require("angbur.undotree")
 require("angbur.vimtest")
 
+
+vim.keymap.set("n", "<leader>vk", vim.diagnostic.open_float, opts)
+
+
 P = function(v)
   print(vim.inspect(v))
   return v
