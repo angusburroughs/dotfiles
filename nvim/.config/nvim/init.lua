@@ -226,7 +226,7 @@ require('lazy').setup({
 vim.o.hlsearch = false
 
 -- Make line numbers default
-vim.wo.number = true
+-- vim.wo.number = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -234,7 +234,7 @@ vim.o.mouse = 'a'
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+-- vim.o.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -258,6 +258,10 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+-- BELOW IS ANGUS CODE
+vim.wo.relativenumber = true
+vim.o.colorcolumn="80,120"
 
 -- [[ Basic Keymaps ]]
 
@@ -537,9 +541,6 @@ cmp.setup {
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
-
--- BELOW IS ANGUS CODE
-vim.wo.relativenumber = true
 
 
 
