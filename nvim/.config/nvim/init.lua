@@ -38,6 +38,12 @@ P.S. You can delete this when you're done too. It's your config now :)
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.o.termguicolors = true
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -64,6 +70,18 @@ vim.opt.rtp:prepend(lazypath)
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
+
+  {
+  "nvim-tree/nvim-tree.lua",
+  version = "*",
+  lazy = false,
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+  },
+  config = function()
+    require("nvim-tree").setup {}
+  end,
+  },
 
   -- Git related plugins
   'tpope/vim-fugitive',
@@ -222,11 +240,19 @@ require('lazy').setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
+-- nvim-tree keybinds
+vim.keymap.set('n', '<leader>ee', ':NvimTreeToggle<CR>', { desc = "NvimTreeToggle" })
+vim.keymap.set('n', '<leader>ef', ':NvimTreeFindFileToggle<CR>', { desc = "NvimTreeToggle" })
+
+
 -- Set highlight on search
 vim.o.hlsearch = false
 
 -- Make line numbers default
--- vim.wo.number = true
+vim.wo.number = true
+
+-- scrolloff
+vim.o.scrolloff = 10
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -256,8 +282,6 @@ vim.o.timeoutlen = 300
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
--- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
 
 -- BELOW IS ANGUS CODE
 vim.wo.relativenumber = true
