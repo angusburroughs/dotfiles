@@ -79,7 +79,31 @@ require('lazy').setup({
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
-    require("nvim-tree").setup {}
+    require("nvim-tree").setup {
+      sort_by = 'case_sensitive',
+      view = {
+        float = {
+          enable = true,
+          open_win_config = {
+            relative = "editor",
+            border = "rounded",
+            width = 1,
+            height = 60,
+            row = 1,
+            col = 1
+          }
+        },
+        width = {},
+        number = true,
+        relativenumber = true,
+      },
+      renderer = {
+        group_empty = true,
+      },
+      git = {
+        ignore = false,
+      }
+    }
   end,
   },
 
@@ -474,6 +498,12 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+
+  gopls = {
+    gopls = {
+      buildFlags = { '-tags=unit,integration,acceptance,e2e' },
+    },
+  },
 
   lua_ls = {
     Lua = {
