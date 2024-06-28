@@ -239,6 +239,8 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+
+  -- github copilot
   {
     'github/copilot.vim'
   }
@@ -573,11 +575,12 @@ cmp.setup {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete {},
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
+    -- actually default, so the bind does nothing except change the behaviour
+    ['<C-y>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ['<C-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_locally_jumpable() then

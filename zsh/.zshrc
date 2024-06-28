@@ -18,6 +18,9 @@ export EDITOR=/opt/homebrew/bin/nvim
 # export GPG_TTY=$(tty)
 # export PATH="/opt/homebrew/opt/gnupg@2.2/bin:$PATH"
 # export PATH="/Users/angusb/go/bin:$PATH"
+#
+
+export PATH="$PATH:$HOME/pathed"
 
 export HOMEBREW_NO_ENV_HINTS
 alias vim=nvim
@@ -27,3 +30,7 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 export PATH="$PATH:$HOME/go/bin"
+
+
+export HISTFILESIZE=1000000
+export HISTSIZE=1000000
