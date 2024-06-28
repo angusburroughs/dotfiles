@@ -516,13 +516,6 @@ local servers = {
       buildFlags = { '-tags=unit,integration,acceptance,e2e' },
     },
   },
-
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
 }
 
 -- Setup neovim lua configuration
