@@ -243,7 +243,7 @@ require('lazy').setup({
   -- github copilot
   {
     'github/copilot.vim'
-  }
+  },
   -- {
   --   "mhanberg/elixir.nvim",
   --   dependencies = {
@@ -270,6 +270,16 @@ require('lazy').setup({
   -- {
   --   'neomake/neomake'
   -- }
+  {
+    'nvim-neotest/neotest',
+    dependencies = {
+      'nvim-neotest/nvim-nio',
+      'nvim-lua/plenary.nvim',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-neotest/neotest-go'
+    }
+  }
 }, {})
 
 -- [[ Setting options ]]
@@ -280,6 +290,11 @@ require('lazy').setup({
 vim.keymap.set('n', '<leader>ee', ':NvimTreeToggle<CR>', { desc = "NvimTreeToggle" })
 vim.keymap.set('n', '<leader>ef', ':NvimTreeFindFileToggle<CR>', { desc = "NvimTreeToggle" })
 
+require("neotest").setup({
+  adapters = {
+    require("neotest-go")
+  },
+})
 
 -- Set highlight on search
 vim.o.hlsearch = false
