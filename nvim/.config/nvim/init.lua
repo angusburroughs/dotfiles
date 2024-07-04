@@ -271,15 +271,38 @@ require('lazy').setup({
   --   'neomake/neomake'
   -- }
   {
-    'nvim-neotest/neotest',
+    "nvim-neotest/neotest",
     dependencies = {
       'nvim-neotest/nvim-nio',
-      'nvim-lua/plenary.nvim',
-      'antoinemadec/FixCursorHold.nvim',
-      'nvim-treesitter/nvim-treesitter',
-      'nvim-neotest/neotest-go'
-    }
-  }
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-neotest/neotest-go",
+    },
+    config = function()
+    -- get neotest namespace (api call creates or returns namespace)
+    local neotest_ns = vim.api.nvim_create_namespace("neotest")
+    vim.diagnostic.config({
+      virtual_text = {
+        format = function(diagnostic)
+          local message =
+            diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+          return message
+        end,
+      },
+    }, neotest_ns)
+    require("neotest").setup({
+      adapters = {
+        require("neotest-go")({
+          experimental = {
+            test_table = true,
+          },
+          args = { "-tags=unit,integration,acceptance,e2e" },
+        }),
+      },
+    })
+  end,
+  },
 }, {})
 
 -- [[ Setting options ]]
@@ -290,11 +313,6 @@ require('lazy').setup({
 vim.keymap.set('n', '<leader>ee', ':NvimTreeToggle<CR>', { desc = "NvimTreeToggle" })
 vim.keymap.set('n', '<leader>ef', ':NvimTreeFindFileToggle<CR>', { desc = "NvimTreeToggle" })
 
-require("neotest").setup({
-  adapters = {
-    require("neotest-go")
-  },
-})
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -625,3 +643,16 @@ cmp.setup {
 --     require("lint").try_lint()
 --   end,
 -- })
+
+
+vim.keymap.set('n', '<leader>tn', function() require('neotest').run.run() end,
+  { desc = 'Run nearest test' })
+vim.keymap.set('n', '<leader>tf', function() require('neotest').run.run(vim.fn.expand('%')) end,
+  { desc = 'Run current file' })
+vim.keymap.set('n', '<leader>to', function() require('neotest').output.open() end,
+  { desc = 'open output panel' })
+vim.keymap.set('n', '<leader>ts', function() require('neotest').summary.toggle() end,
+  { desc = 'Toggle summary panel' })
+vim.keymap.set('n', '<leader>tp', function() require('neotest').output_panel.toggle() end,
+  { desc = 'Toggle output panel' })
+
