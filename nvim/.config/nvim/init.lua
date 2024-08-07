@@ -645,6 +645,7 @@ cmp.setup {
 -- })
 
 
+-- neotest
 vim.keymap.set('n', '<leader>tn', function() require('neotest').run.run() end,
   { desc = 'Run nearest test' })
 vim.keymap.set('n', '<leader>tf', function() require('neotest').run.run(vim.fn.expand('%')) end,
@@ -656,3 +657,5 @@ vim.keymap.set('n', '<leader>ts', function() require('neotest').summary.toggle()
 vim.keymap.set('n', '<leader>tp', function() require('neotest').output_panel.toggle() end,
   { desc = 'Toggle output panel' })
 
+vim.keymap.set('i', '<C-L>', '<Plug>(copilot-next)')
+ 
