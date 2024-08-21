@@ -34,3 +34,5 @@ export PATH="$PATH:$HOME/go/bin"
 
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
+
+source /Users/angusb/.export_api_keys
