@@ -25,9 +25,9 @@ export PATH="$PATH:$HOME/pathed"
 export HOMEBREW_NO_ENV_HINTS
 alias vim=nvim
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
 
 export PATH="$PATH:$HOME/go/bin"
 
@@ -35,4 +35,8 @@ export PATH="$PATH:$HOME/go/bin"
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 
-source /Users/angusb/.export_api_keys
+#source /Users/angusb/.export_api_keys
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
