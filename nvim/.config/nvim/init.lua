@@ -366,48 +366,48 @@ require('lazy').setup({
       vim.keymap.set({ 'n', 'v' }, '<leader>i', anthropic_replace, { desc = 'llm anthropic' })
     end,
   },
-  {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = false,
-    opts = {
-      -- add any opts here
-    },
-    build = ":AvanteBuild", -- This is optional, recommended tho. Also note that this will block the startup for a bit since we are compiling bindings in Rust.
-    dependencies = {
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      --- The below dependencies are optional,
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua", -- for providers='copilot'
-      {
-        -- support for image pasting
-        "HakonHarnes/img-clip.nvim",
-        event = "VeryLazy",
-        opts = {
-          -- recommended settings
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            -- required for Windows users
-            use_absolute_path = true,
-          },
-        },
-      },
-      {
-        -- Make sure to setup it properly if you have lazy=true
-        'MeanderingProgrammer/render-markdown.nvim',
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
-    },
-  },
+  --  {
+  --    "yetone/avante.nvim",
+  --    event = "VeryLazy",
+  --    lazy = false,
+  --    opts = {
+  --      -- add any opts here
+  --    },
+  --    build = ":AvanteBuild", -- This is optional, recommended tho. Also note that this will block the startup for a bit since we are compiling bindings in Rust.
+  --    dependencies = {
+  --      "stevearc/dressing.nvim",
+  --      "nvim-lua/plenary.nvim",
+  --      "MunifTanjim/nui.nvim",
+  --      --- The below dependencies are optional,
+  --      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+  --      "zbirenbaum/copilot.lua", -- for providers='copilot'
+  --      {
+  --        -- support for image pasting
+  --        "HakonHarnes/img-clip.nvim",
+  --        event = "VeryLazy",
+  --        opts = {
+  --          -- recommended settings
+  --          default = {
+  --            embed_image_as_base64 = false,
+  --            prompt_for_file_name = false,
+  --            drag_and_drop = {
+  --              insert_mode = true,
+  --            },
+  --            -- required for Windows users
+  --            use_absolute_path = true,
+  --          },
+  --        },
+  --      },
+  --      {
+  --        -- Make sure to setup it properly if you have lazy=true
+  --        'MeanderingProgrammer/render-markdown.nvim',
+  --        opts = {
+  --          file_types = { "markdown", "Avante" },
+  --        },
+  --        ft = { "markdown", "Avante" },
+  --      },
+  --    },
+  --  },
   {
     "mbbill/undotree",
     config = function()
@@ -424,6 +424,31 @@ require('lazy').setup({
 vim.keymap.set('n', '<leader>ee', ':NvimTreeToggle<CR>', { desc = "NvimTreeToggle" })
 vim.keymap.set('n', '<leader>ef', ':NvimTreeFindFileToggle<CR>', { desc = "NvimTreeToggle" })
 
+-- man fuck windows man, need this bullshit, probably slows down my startup but oh well it is what we need
+-- Check if we're in WSL (Linux with 'microsoft' in uname -r)
+if vim.fn.system('uname -s'):match('Linux') then
+  if vim.fn.system('uname -r'):match('microsoft') then
+    -- WSL: Use win32yank
+    vim.opt.clipboard:append { 'unnamedplus' }
+    vim.g.clipboard = {
+      name = 'win32yank',
+      copy = { ['+'] = '/usr/local/bin/win32yank.exe -i --crlf', ['*'] = '/usr/local/bin/win32yank.exe -i --crlf' },
+      paste = { ['+'] = '/usr/local/bin/win32yank.exe -o --lf', ['*'] = '/usr/local/bin/win32yank.exe -o --lf' },
+      cache_enabled = 0,
+    }
+  else
+    -- Native Linux: Use xclip (or xsel) for clipboard
+    if vim.fn.executable('xclip') == 1 then
+      vim.opt.clipboard:append { 'unnamedplus' }
+      vim.g.clipboard = {
+        name = 'xclip',
+        copy = { ['+'] = 'xclip -selection clipboard', ['*'] = 'xclip -selection clipboard' },
+        paste = { ['+'] = 'xclip -selection clipboard -o', ['*'] = 'xclip -selection clipboard -o' },
+        cache_enabled = 0,
+      }
+    end
+  end
+end
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -526,7 +551,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'elixir' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'elixir', 'perl' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
