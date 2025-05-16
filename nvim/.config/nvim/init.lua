@@ -524,6 +524,12 @@ require('telescope').setup {
       },
     },
   },
+  extensions = {
+    fzf = {
+      fuzzy = false,
+      override_file_sorter = false,
+    }
+  }
 }
 
 -- Enable telescope fzf native, if installed
@@ -679,6 +685,12 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  --
+  perlnavigator = {
+    perlnavigator = {
+      includePaths = '$workspaceFolder/perllib'
+    },
+  },
 
   gopls = {
     gopls = {
