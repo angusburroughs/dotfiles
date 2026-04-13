@@ -69,7 +69,7 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 alias vim=nvim
 export HOMEBREW_NO_ENV_HINTS
 bindkey -s ^f "tmux-sessionizer\n"
-source /home/angusburroughs/tool-worktree-sessionizer.zsh
+source "$HOME/.dotfiles/zsh/tool-worktree-sessionizer.zsh"
 
 # tmux things
 export TERM="screen-256color"
@@ -80,6 +80,12 @@ export COLORTERM=truecolor
 
 
 # PERL
-export PERL5LIB=/home/angusburroughs/workspace/mas-data-warehouse/perllib:$PERL5LIB
-eval "$(perl -I/home/angusburroughs/perl5/lib/perl5 -Mlocal::lib)"
+if [[ -d "$HOME/workspace/mas-data-warehouse/perllib" ]]; then
+  export PERL5LIB="$HOME/workspace/mas-data-warehouse/perllib${PERL5LIB:+:$PERL5LIB}"
+fi
+
+if command -v perl >/dev/null 2>&1 && \
+   perl -I"$HOME/perl5/lib/perl5" -Mlocal::lib -e1 >/dev/null 2>&1; then
+  eval "$(perl -I"$HOME/perl5/lib/perl5" -Mlocal::lib)"
+fi
 typeset -U path PATH
